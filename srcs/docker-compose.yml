@@ -1,11 +1,39 @@
-version: '3.8'
-
 services:
-  mariadb_data:
-    name: mariadb_data
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx/.
+    env_file: .env
+    networks:
+      - inception
+    expose:
+      - 433
+    restart: on-failure
+    depends_on:
+      - wordpress
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress/.
     volumes:
-      - /home/tiagoliv/data/mysql:var/lib/mysql
-  wordpress_data:
-    name: wordpress_data
+      - /home/tagoliv/data/wordpress:/var/lib/wordpress
+    env_file: .env
+    networks:
+      - inception
+    restart: on-failure
+    depends_on:
+      - mariadb
+
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb/.
     volumes:
-      - /home/tagoliv/data/wordpress:var/lib/wordpress
+      - /home/tagoliv/data/mariadb:/var/lib/mariadb
+    env_file: .env
+    networks:
+      - inception
+    restart: on-failure
+
+networks:
+  inception:
+    name: inception
+    driver: bridge
