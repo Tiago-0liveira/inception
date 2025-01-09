@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:oldstable
 
 RUN apk update && \
     apk add --no=chache nginx

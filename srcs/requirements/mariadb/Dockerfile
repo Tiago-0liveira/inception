@@ -1,1 +1,1 @@
-FROM alpine:edge
+FROM alpine:oldstable
