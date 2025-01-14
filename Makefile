@@ -17,6 +17,13 @@ start:
 stop: 
 	docker-compose -f $(COMPOSE_FILE) stop
 
+into-w:
+	docker exec -it wordpress /bin/sh
+into-m:
+	docker exec -it mariadb /bin/sh
+into-n:
+	docker exec -it nginx /bin/sh
+
 setup:
 	@echo "Setting up the directories\n"
 	@sudo mkdir -p ${DATA}

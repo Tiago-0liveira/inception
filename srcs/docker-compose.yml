@@ -5,6 +5,8 @@ services:
     env_file: .env
     networks:
       - inception
+    ports:
+      - "443:443"
     expose:
       - 433
     restart: on-failure
@@ -15,10 +17,12 @@ services:
     container_name: wordpress
     build: ./requirements/wordpress/.
     volumes:
-      - /home/tagoliv/data/wordpress:/var/lib/wordpress
+      - /home/tiagoliv/data/wordpress:/var/www/html/
     env_file: .env
     networks:
       - inception
+    expose:
+      - 9000
     restart: on-failure
     depends_on:
       - mariadb
@@ -27,10 +31,12 @@ services:
     container_name: mariadb
     build: ./requirements/mariadb/.
     volumes:
-      - /home/tagoliv/data/mariadb:/var/lib/mariadb
+      - /home/tiagoliv/data/mariadb:/var/lib/mysql
     env_file: .env
     networks:
       - inception
+    expose:
+      - 3306
     restart: on-failure
 
 networks:

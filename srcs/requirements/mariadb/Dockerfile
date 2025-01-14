@@ -7,4 +7,6 @@ RUN apk update && apk add --no-cache\
 
 COPY tools/mariadb.sh /tools/mariadb.sh
 
+EXPOSE 3306
+
 ENTRYPOINT ["sh", "/tools/mariadb.sh"]

@@ -5,7 +5,12 @@ do
     sleep 3
 done
 
+
 WP=/var/www/html
+
+mkdir -p ${WP}
+chown -R nginx:nginx /var/www/html
+chmod -R 755 /var/www/html
 
 if [ ! -f ${WP}/wp-config.php ]; then
     wp cli update --yes --allow-root
