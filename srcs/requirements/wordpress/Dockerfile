@@ -11,6 +11,7 @@ RUN adduser -S nginx && addgroup -S nginx
 RUN ln -s /usr/bin/php82 /usr/bin/php
 
 COPY "./tools/wordpress.sh" "/tmp/wordpress.sh"
+COPY "./tools/www.conf" "/etc/php82/php-fpm.d/www.conf"
 
 WORKDIR /var/www/html
 

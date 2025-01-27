@@ -9,8 +9,9 @@ done
 WP=/var/www/html
 
 mkdir -p ${WP}
-chown -R nginx:nginx /var/www/html
-chmod -R 755 /var/www/html
+chown -R nginx:nginx ${WP}
+chmod -R 755 ${WP}
+
 
 if [ ! -f ${WP}/wp-config.php ]; then
     wp cli update --yes --allow-root
@@ -20,5 +21,9 @@ if [ ! -f ${WP}/wp-config.php ]; then
     wp user create ${WP_USR} ${WP_USR_EMAIL} --role=author --user_pass=${WP_USR_PW}   --allow-root
     wp theme install pixl --activate --allow-root
 fi
+
+chmod -R 775 ${WP}/wp-content
+chown -R nginx:nginx ${WP}/wp-content
+
 exec /usr/sbin/php-fpm82 -F -R 
 
