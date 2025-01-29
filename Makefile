@@ -27,8 +27,8 @@ into-n:
 setup:
 	@echo "Setting up the directories\n"
 	@sudo mkdir -p ${DATA}
-	@sudo mkdir -p ${DATA}/home/tagoliv/data/wordpress
-	@sudo mkdir -p ${DATA}/home/tagoliv/data/mariadb
+	@sudo mkdir -p ${DATA}/home/tiagoliv/data/wordpress
+	@sudo mkdir -p ${DATA}/home/tiagoliv/data/mariadb
 
 clean:
 	${RM} ${DATA}
